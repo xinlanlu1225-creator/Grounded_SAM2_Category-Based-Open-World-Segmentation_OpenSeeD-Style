@@ -57,7 +57,12 @@ device = "cuda:0" if torch.cuda.is_available() else "cpu"
 torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
 
 # build florence-2
-florence2_model = AutoModelForCausalLM.from_pretrained(FLORENCE2_MODEL_ID, trust_remote_code=True, torch_dtype='auto').eval().to(device)
+florence2_model = AutoModelForCausalLM.from_pretrained(
+    FLORENCE2_MODEL_ID,
+    trust_remote_code=True,
+    torch_dtype='auto',
+    attn_implementation="eager",
+).eval().to(device)
 florence2_processor = AutoProcessor.from_pretrained(FLORENCE2_MODEL_ID, trust_remote_code=True)
 
 # build sam 2

@@ -57,7 +57,8 @@ def predict(
         box_threshold: float,
         text_threshold: float,
         device: str = "cuda",
-        remove_combined: bool = False
+    remove_combined: bool = False,
+    unset_image_tensor: bool = True,
 ) -> Tuple[torch.Tensor, torch.Tensor, List[str]]:
     caption = preprocess_caption(caption=caption)
 
@@ -65,7 +66,7 @@ def predict(
     image = image.to(device)
 
     with torch.no_grad():
-        outputs = model(image[None], captions=[caption])
+        outputs = model(image[None], captions=[caption], unset_image_tensor=unset_image_tensor)
 
     prediction_logits = outputs["pred_logits"].cpu().sigmoid()[0]  # prediction_logits.shape = (nq, 256)
     prediction_boxes = outputs["pred_boxes"].cpu()[0]  # prediction_boxes.shape = (nq, 4)
