@@ -1,6 +1,6 @@
 # Grounded SAM 2 → 9-Class Semantic Segmentation (SemanticKITTI)
 
-[Shuo Shen](https://github.com/ShuoShenDe)
+
 
 A closed-set semantic segmentation pipeline built on **[Grounded SAM 2](https://github.com/IDEA-Research/Grounded-SAM-2)** ([SAM 2](https://arxiv.org/abs/2408.00714) + [Grounding DINO](https://arxiv.org/abs/2303.05499)). Designed as an OpenSeeD-style upstream component for autonomous-driving datasets — deterministic class IDs, fixed color palette, dense per-pixel labels, robust to prompt overlap and single-frame flicker.
 
